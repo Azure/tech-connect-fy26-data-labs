@@ -1985,26 +1985,56 @@ The schema conversion relies on an Azure OpenAI endpoint. This is a prerequisite
 ## Task 1: Create a Foundry Resource in Azure
 
 1. [ ]Sign into the Lab VM using +++Passw0rd!+++  as the password.
-1. [ ] Launch the browser and log in to the Azure Portal +++https://portal.azure.com+++.  The credentials for the Azure account can be found in the resources tab of the lab instructions. !IMAGE[Resources.png](instructions332747/Resources.png)
-2. [ ] In the portal search bar type +++Foundry+++ and select _Microsoft Foundry_. !IMAGE[Foundry_1.png](instructions332747/Foundry_1.png)
-3. [ ] Select Foundry from the blade on the left under _Use with Foundry_ and click on _Create_.!IMAGE[Foundry_2.png](instructions332747/Foundry_2.png)
-4. [ ] Use the existing resourcee group _AZMigrateRG_ and prrovide a name +++OratoPG-@lab.LabInstance.Id+++.  Pick a region with AI capacity such as East US.!IMAGE[Foundry_3.png](instructions332747/Foundry_3.png)
-5. [ ] Go to the _Review + create_ tab aand click on _Create_.  Click on _Go to Resource_ once deployment has completed.!IMAGE[Foundry_4.png](instructions332747/Foundry_4.png).  
+2. [ ] Launch the browser and log in to the Azure Portal +++https://portal.azure.com+++.  The credentials for the Azure account can be found in the resources tab of the lab instructions. 
+
+	!IMAGE[Resources.png](instructions332747/Resources.png)
+
+4. [ ] In the portal search bar type +++Foundry+++ and select _Microsoft Foundry_. 
+
+	!IMAGE[Foundry_1.png](instructions332747/Foundry_1.png)
+
+7. [ ] Select Foundry from the blade on the left under _Use with Foundry_ and click on _Create_.
+
+	!IMAGE[Foundry_2.png](instructions332747/Foundry_2.png)
+
+9. [ ] Use the existing resourcee group _AZMigrateRG_ and prrovide a name +++OratoPG-@lab.LabInstance.Id+++.  Pick a region with AI capacity such as East US.
+
+	!IMAGE[Foundry_3.png](instructions332747/Foundry_3.png)
+
+11. [ ] Go to the _Review + create_ tab aand click on _Create_.  Click on _Go to Resource_ once deployment has completed.
+
+	!IMAGE[Foundry_4.png](instructions332747/Foundry_4.png).  
 
 ===
 
 ## Task 2: Configure the Required OpenAI Endpoint
 
-1. [ ] From the _Overview_ blade of the _Foundry_ resource you just created in Task 1, click on _Go to Foundry portal_. !IMAGE[Foundry_5.png](instructions332747/Foundry_5.png)
-2. [ ] Fom the _Overview_ blade, to the right go to he OpenAI section. Click on the _Azure OpenAI_ section and take note of the _OpenAI Endpoint_ and the _Key_.!IMAGE[Foundry_6.png](instructions332747/Foundry_6.png) 
-3. [ ] Copy the OpenAI endpoint URL and paste it in the text box below for later use.
+1. [ ] From the _Overview_ blade of the _Foundry_ resource you just created in Task 1, click on _Go to Foundry portal_. 
+    !IMAGE[Foundry_5.png](instructions332747/Foundry_5.png)
+
+2. [ ] Fom the _Overview_ blade, to the right go to he OpenAI section. Click on the _Azure OpenAI_ section and take note of the _OpenAI Endpoint_ and the _Key_.
+
+	!IMAGE[Foundry_6.png](instructions332747/Foundry_6.png) 
+
+4. [ ] Copy the OpenAI endpoint URL and paste it in the text box below for later use.
 @lab.TextBox(OpenAIEndpoint)
 4. [ ] Copy the API Key and paste it in the text box below for later use.
 @lab.TextBox(OpenAIAPIKey)
-5. [ ] In the blade on the left, navigate to _My assets_ -> _Models + endpoints_ and click on _Deploy model_-> _Base model_ .!IMAGE[Foundry_7.png](instructions332747/Foundry_7.png)
-6. [ ] Select _gpt-4.1_ and click on _Confirm_.!IMAGE[Foundry_8.png](instructions332747/Foundry_8.png) 
-7. [ ] Click on _Customize_ to change the TPM value.!IMAGE[Foundry_9.png](instructions332747/Foundry_9.png)
-8. [ ] Slide the bar to 1M tokens and click on _Deploy_.!IMAGE[Foundry_10.png](instructions332747/Foundry_10.png)
+5. [ ] In the blade on the left, navigate to _My assets_ -> _Models + endpoints_ and click on _Deploy model_-> _Base model_.
+
+	!IMAGE[Foundry_7.png](instructions332747/Foundry_7.png)
+
+7. [ ] Select _gpt-4.1_ and click on _Confirm_.
+
+	!IMAGE[Foundry_8.png](instructions332747/Foundry_8.png) 
+
+9. [ ] Click on _Customize_ to change the TPM value.
+
+	!IMAGE[Foundry_9.png](instructions332747/Foundry_9.png)
+
+11. [ ] Slide the bar to 1M tokens and click on _Deploy_.
+
+	!IMAGE[Foundry_10.png](instructions332747/Foundry_10.png)
 
 ===
 
@@ -2013,10 +2043,15 @@ The schema conversion relies on an Azure OpenAI endpoint. This is a prerequisite
 ## Task 1: Establish VPN Connection
 
 
-1. [ ] Locate the **HV-AutomateClientVPNSconnect.ps1** file on the desktop.!IMAGE[VPN_1.png](instructions332747/VPN_1.png)
-2. [ ] Right click on the file and then select **Run with PowerShell**.
-3. [ ] Wait until you see the prompt to sign in using a web browser. Copy the code from the PowerShell window (note your code will be different from what is shown in the image).
-!IMAGE[VPN_2.png](instructions332747/VPN_2.png)
+1. [ ] Locate the **HV-AutomateClientVPNSconnect.ps1** file on the desktop.
+
+	!IMAGE[VPN_1.png](instructions332747/VPN_1.png)
+
+3. [ ] Right click on the file and then select **Run with PowerShell**.
+4. [ ] Wait until you see the prompt to sign in using a web browser. Copy the code from the PowerShell window (note your code will be different from what is shown in the image).
+
+	!IMAGE[VPN_2.png](instructions332747/VPN_2.png)
+
 4. [ ] Open a new browser tab and connect to +++microsoft.com/devicelogin+++.
 5. [ ] Paste the code, and then select _Next_.
 6. [ ] Select **@lab.CloudPortalCredential(User1).Username**, and then select _Continue_.
@@ -2030,41 +2065,83 @@ The schema conversion relies on an Azure OpenAI endpoint. This is a prerequisite
 ## Task 2: Create Project to Convert the Oracle Schema to PostgreSQL
 
 1. [ ] Go to the Azure Portal +++https://portal.azure.com+++ and locate the _Azure PostgreSQL Flexible Server_ server pre-deployed for you in the _AZMigrateRG_ resource group (if it's not there, it might be in the process of deploying).
-2. [ ] In he same resource group, locate the private DNS zone and click on it. From the _Overview_ blade, click on _Record set_ links. !IMAGE[DNS_1.png](instructions332747/DNS_1.png)
-3. [ ] Take note of the _A Record_ IP address.!IMAGE[DNS_2.png](instructions332747/DNS_2.png)
-4. [ ] Copy the IP address in the text box below:
+2. [ ] In he same resource group, locate the private DNS zone and click on it. From the _Overview_ blade, click on _Record set_ links. 
+
+	!IMAGE[DNS_1.png](instructions332747/DNS_1.png)
+
+4. [ ] Take note of the _A Record_ IP address.
+
+	!IMAGE[DNS_2.png](instructions332747/DNS_2.png)
+
+6. [ ] Copy the IP address in the text box below:
 	 @lab.TextBox(FlexIP)
 5. [ ] Open _File  Explorer_ and create an empty folder under _C:_ called +++Oracle_to_PG+++.
-6. [ ] Launch Visual Studio Code from the desktop shortcut.!IMAGE[VScode_1.png](instructions332747/VScode_1.png)
-7. [ ] Go to _File_ -> _Open Folder_ and select the folder created in step 5. !IMAGE[VScode_2.png](instructions332747/VScode_2.png)
-8. [ ] Click on the PostgreSQL extension on the left hand in VS Code. And click on _Add Connection_.!IMAGE[VScode_4.png](instructions332747/VScode_4.png)
-9. [ ] For _Server Name_ type +++@lab.Variable(FlexIP)+++ (see step 4 if the IP address is not shown). Username should be +++pgadmin+++ and password +++Password~1+++. Enter +++postgres+++ for _database name_. For _connection name_ type +++Oracle to PG Schema+++. 
-10. [ ] Click on _Test Connection_ then _Save & Connect_.!IMAGE[VScode_5.png](instructions332747/VScode_5.png)
+6. [ ] Launch Visual Studio Code from the desktop shortcut.
+
+	!IMAGE[VScode_1.png](instructions332747/VScode_1.png)
+
+8. [ ] Go to _File_ -> _Open Folder_ and select the folder created in step 5. 
+
+	!IMAGE[VScode_2.png](instructions332747/VScode_2.png)
+
+10. [ ] Click on the PostgreSQL extension on the left hand in VS Code. And click on _Add Connection_.
+
+	!IMAGE[VScode_4.png](instructions332747/VScode_4.png)
+
+12. [ ] For _Server Name_ type +++@lab.Variable(FlexIP)+++ (see step 4 if the IP address is not shown). Username should be +++pgadmin+++ and password +++Password~1+++. Enter +++postgres+++ for _database name_. For _connection name_ type +++Oracle to PG Schema+++. 
+13. [ ] Click on _Test Connection_ then _Save & Connect_.
+
+	!IMAGE[VScode_5.png](instructions332747/VScode_5.png)
 	
     !IMAGE[VScode_6.png](instructions332747/VScode_6.png)
-11. [ ] Click on _Create Migration Project_. !IMAGE[VScode_7.png](instructions332747/VScode_7.png)
-12. [ ] Give the project a name +++Oracle to PostgreSQL Schema Conversion+++ aand click on _Next: Oracle Connection_ !IMAGE[VScode_8.png](instructions332747/VScode_8.png)
-13. [ ] Provide the connection information for Oracle.
-    1. [ ] Hostname :+++localhost++
+
+11. [ ] Click on _Create Migration Project_. 
+
+	!IMAGE[VScode_7.png](instructions332747/VScode_7.png)
+
+13. [ ] Give the project a name +++Oracle to PostgreSQL Schema Conversion+++ aand click on _Next: Oracle Connection_ 
+
+	!IMAGE[VScode_8.png](instructions332747/VScode_8.png)
+
+15. [ ] Provide the connection information for Oracle.
+    1. [ ] Hostname :+++localhost+++
     2. [ ] Oracle SID +++XE+++
     3. [ ] Oracle username +++c##store+++
-    4. [ ] Click on _Load Schemas_ and select _C##STORE_!IMAGE[VScode_9.png](instructions332747/VScode_9.png)
-14. [ ] Click _Next:PostgreSQL Connection_ 
-15. [ ] Select the existing connection created in step 9, and select the _postgres_ database from the list of databases. !IMAGE[VScode_10.png](instructions332747/VScode_10.png)
-16. [ ] Click on _Next:Language Model Configuration_
-17. Configure the OpenAI endpoint to use
+    4. [ ] Click on _Load Schemas_ and select _C##STORE_
+    
+    	!IMAGE[VScode_9.png](instructions332747/VScode_9.png)
+
+16. [ ] Click _Next:PostgreSQL Connection_ 
+17. [ ] Select the existing connection created in step 9, and select the _postgres_ database from the list of databases. 
+
+	!IMAGE[VScode_10.png](instructions332747/VScode_10.png)
+
+19. [ ] Click on _Next:Language Model Configuration_
+20. Configure the OpenAI endpoint to use
     1. [ ] Specify the url to the OpenAI endpoint saved earlier +++@lab.Variable(OpenAIEndpoint)+++
-    2. [ ] Provide the API key saved earlier +++@lab.Variable(OpenAIAPIKey)+++ and click on _Test OpenAI Connection_!IMAGE[VScode_11.png](instructions332747/VScode_11.png)
-18. [ ] Click on _Create Migration Project_
+    2. [ ] Provide the API key saved earlier +++@lab.Variable(OpenAIAPIKey)+++ and click on _Test OpenAI Connection_.
+    	!IMAGE[VScode_11.png](instructions332747/VScode_11.png)
+21. [ ] Click on _Create Migration Project_.
 
 ===
 
 ## Task 3: Convert the Oracle Schema to PostgreSQL
 
-1. [ ] Click on _Migrate_ in _Step 1_ in the project !IMAGE[VScode_12.png](instructions332747/VScode_12.png)
-2. [ ] Watch the progress in the UI !IMAGE[VScode_13.png](instructions332747/VScode_13.png)
-3. [ ] In VS Code click on file explorer. !IMAGE[VScode_14.png](instructions332747/VScode_14.png)
-4. [ ] Once schema conversion completes (follow UI information) each object definition extracted from the source will be under the oracle folder in a file. Similarly, every object converted for PostgreSQL will be under the postgres folder in a file. The files generated under the postgre folder can be used to create the objects in Azure Database for PostgreSQL. !IMAGE[VScode_15.png](instructions332747/VScode_15.png)
+1. [ ] Click on _Migrate_ in _Step 1_ in the project 
+
+	!IMAGE[VScode_12.png](instructions332747/VScode_12.png)
+
+3. [ ] Watch the progress in the UI. 
+	
+    !IMAGE[VScode_13.png](instructions332747/VScode_13.png)
+
+5. [ ] In VS Code click on file explorer. 
+
+	!IMAGE[VScode_14.png](instructions332747/VScode_14.png)
+
+7. [ ] Once schema conversion completes (follow UI information) each object definition extracted from the source will be under the oracle folder in a file. Similarly, every object converted for PostgreSQL will be under the postgres folder in a file. The files generated under the postgre folder can be used to create the objects in Azure Database for PostgreSQL. 
+
+	!IMAGE[VScode_15.png](instructions332747/VScode_15.png)
 
 === 
 ## Task 4: Review the Conversion Summary
