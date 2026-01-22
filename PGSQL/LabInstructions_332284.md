@@ -2107,7 +2107,8 @@ The schema conversion relies on an Azure OpenAI endpoint. This is a prerequisite
     1. [ ] Hostname :+++localhost+++
     2. [ ] Oracle SID +++XE+++
     3. [ ] Oracle username +++c##store+++
-    4. [ ] Click on _Load Schemas_ and select _C##STORE_
+    4. [ ] Oracle password +++store123+++
+    5. [ ] Click on _Load Schemas_ and select _C##STORE_
     
     	!IMAGE[VScode_9.png](instructions332747/VScode_9.png)
 
